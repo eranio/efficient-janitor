@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/medium_margin"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/medium_margin"
+        android:layout_marginEnd="@dimen/medium_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/efficient_janitor_title"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/addRandomBags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:layout_marginTop="@dimen/medium_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleTextView"
+            android:text="@string/addRandom" />
+
+        <LinearLayout
+            android:id="@+id/inputRow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/addRandomBags"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <EditText
+                android:id="@+id/weightInputEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/bag_weight_hint"
+                android:inputType="numberDecimal" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="@string/add" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bagRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            app:layout_constraintTop_toBottomOf="@id/inputRow"
+            app:layout_constraintBottom_toTopOf="@id/buttonsRow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/buttonsRow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <Button
+                android:id="@+id/clearButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/clear" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/calculateButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/calculate" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

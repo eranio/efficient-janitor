@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/black"
+    android:fitsSystemWindows="true"
+    android:padding="@dimen/medium_margin">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/resultToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/medium_margin"
+        android:layout_marginEnd="@dimen/medium_margin"
+        android:background="?attr/colorPrimary"
+        android:titleTextColor="@android:color/white"
+        app:title="Calculation Results"
+        app:navigationIcon="@android:drawable/ic_menu_revert"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tripSummaryTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="?android:textColorSecondary"
+        tools:text="Total trips: 0"
+        android:layout_marginStart="@dimen/medium_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginBottom="@dimen/small_margin"
+        app:layout_constraintTop_toBottomOf="@id/resultToolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/resultRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/small_margin"
+        android:layout_marginStart="@dimen/medium_margin"
+        android:layout_marginEnd="@dimen/medium_margin"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/tripSummaryTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

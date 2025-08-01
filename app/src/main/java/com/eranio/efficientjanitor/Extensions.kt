@@ -1,0 +1,12 @@
+package com.eranio.efficientjanitor
+
+import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+
+fun Double.formatKg(): String = String.format("%.2f Kg", this)
+
+fun View.hideKeyboard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(windowToken, 0)
+}

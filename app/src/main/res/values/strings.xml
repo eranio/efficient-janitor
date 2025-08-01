@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">EfficientJanitor</string>
+    <string name="bag_weight_hint">bag weight (kg)</string>
+    <string name="add">Add</string>
+    <string name="clear">Clear</string>
+    <string name="calculate">Calculate</string>
+    <string name="efficient_janitor_title">Efficient Janitor</string>
+    <string name="delete">Delete</string>
+    <string name="delete_bag">Delete bag</string>
+    <string name="addRandom">Add 10 Random</string>
+    <string name="total_trips_summary">Total Trips: %d</string>
+</resources>
