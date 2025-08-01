@@ -1,6 +1,7 @@
 package com.eranio.efficientjanitor
 
 import com.eranio.efficientjanitor.domain.TripsCalculator
+import com.eranio.efficientjanitor.util.Constants.MAX_BAG_WEIGHT
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import org.junit.Before
@@ -18,8 +19,8 @@ class TripsCalculatorTest {
     fun `bags that fit exactly into trips of 3kg`() {
         val result = calculator.calculateTrips(listOf(1.5, 1.5, 2.0, 1.0))
         assertEquals(2, result.size)
-        assertTrue(result.any { it.sum() == 3.0 })
-        assertTrue(result.all { it.sum() <= 3.0 })
+        assertTrue(result.any { it.sum() == MAX_BAG_WEIGHT })
+        assertTrue(result.all { it.sum() <= MAX_BAG_WEIGHT })
     }
 
     @Test
@@ -34,7 +35,7 @@ class TripsCalculatorTest {
         val input = listOf(1.5, 1.6, 1.0, 2.0, 1.01)
         val result = calculator.calculateTrips(input)
 
-        assertTrue(result.all { it.sum() <= 3.0 })
+        assertTrue(result.all { it.sum() <= MAX_BAG_WEIGHT })
         val flat = result.flatten().sorted()
         val expected = input.sorted()
         assertEquals(expected, flat)

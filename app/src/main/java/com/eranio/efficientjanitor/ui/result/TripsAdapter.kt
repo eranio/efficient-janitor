@@ -1,4 +1,4 @@
-package com.eranio.efficientjanitor.ui
+package com.eranio.efficientjanitor.ui.result
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

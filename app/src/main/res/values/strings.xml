@@ -9,4 +9,8 @@
     <string name="delete_bag">Delete bag</string>
     <string name="addRandom">Add 10 Random</string>
     <string name="total_trips_summary">Total Trips: %d</string>
+    <string name="invalid_weight_range">Invalid weight (%.2f - %.2f Kg)</string>
+    <string name="cant_be_empty">Weight cannot be empty</string>
+    <string name="list_was_cleared">List was cleared</string>
+
 </resources>

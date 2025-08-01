@@ -1,4 +1,4 @@
-package com.eranio.efficientjanitor.ui
+package com.eranio.efficientjanitor.ui.main
 
 import android.os.Build
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.eranio.efficientjanitor.R
 import com.eranio.efficientjanitor.databinding.ActivityMainBinding
 import com.eranio.efficientjanitor.hideKeyboard
+import com.eranio.efficientjanitor.ui.result.ResultFragment
 import com.eranio.efficientjanitor.viewmodel.JanitorViewModel
 import com.eranio.efficientjanitor.viewmodel.UiEvent
 import com.google.android.material.snackbar.Snackbar
@@ -55,11 +55,12 @@ class MainActivity : AppCompatActivity() {
                 viewModel.uiEvent.collect { event ->
                     when (event) {
                         is UiEvent.ShowSnackbar -> {
-                            Snackbar.make(binding.root, event.message, Snackbar.LENGTH_LONG).show()
+                            val message = getString(event.messageRes, *event.args.toTypedArray())
+                            Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
                         }
 
                         is UiEvent.ClearSuccess -> {
-                            Toast.makeText(this@MainActivity, "List was cleared", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@MainActivity, getString(R.string.list_was_cleared), Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

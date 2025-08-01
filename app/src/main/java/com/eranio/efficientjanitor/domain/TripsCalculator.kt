@@ -1,5 +1,6 @@
 package com.eranio.efficientjanitor.domain
 
+import com.eranio.efficientjanitor.util.Constants.MAX_BAG_WEIGHT
 import javax.inject.Inject
 
 class TripsCalculator @Inject constructor() {
@@ -10,7 +11,7 @@ class TripsCalculator @Inject constructor() {
 
         while (sorted.isNotEmpty()) {
             val trip = mutableListOf<Double>()
-            var remaining = 3.0
+            var remaining = MAX_BAG_WEIGHT
 
             val iterator = sorted.iterator()
             while (iterator.hasNext()) {

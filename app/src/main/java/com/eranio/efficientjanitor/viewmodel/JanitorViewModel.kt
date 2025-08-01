@@ -1,8 +1,12 @@
 package com.eranio.efficientjanitor.viewmodel
 
+import androidx.core.content.ContextCompat.getString
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.eranio.efficientjanitor.R
 import com.eranio.efficientjanitor.domain.TripsCalculator
+import com.eranio.efficientjanitor.util.Constants.MAX_BAG_WEIGHT
+import com.eranio.efficientjanitor.util.Constants.MIN_BAG_WEIGHT
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,7 +37,7 @@ class JanitorViewModel @Inject constructor(
     private fun addRandomBags(count: Int = 10) {
         val random = Random(System.currentTimeMillis())
         val newBags = List(count) {
-            (random.nextDouble(0.1, 3.0) * 100).roundToInt() / 100.0
+            (random.nextDouble(MIN_BAG_WEIGHT, MAX_BAG_WEIGHT) * 100).roundToInt() / 100.0
         }
 
         val updated = _uiState.value.bags + newBags
@@ -48,13 +52,13 @@ class JanitorViewModel @Inject constructor(
         val weight = inputText.toDoubleOrNull()
         val current = _uiState.value ?: return
         if (weight == null) {
-            sendUiEvent(UiEvent.ShowSnackbar("Can't be empty"))
+            sendUiEvent(UiEvent.ShowSnackbar(R.string.cant_be_empty, emptyList()))
             return
         }
 
-        if (weight !in 1.01..3.0) {
+        if (weight !in MIN_BAG_WEIGHT..MAX_BAG_WEIGHT) {
             viewModelScope.launch {
-                sendUiEvent(UiEvent.ShowSnackbar("Invalid weight (1.01 - 3.0 Kg)"))
+                sendUiEvent(UiEvent.ShowSnackbar(R.string.invalid_weight_range, listOf(MIN_BAG_WEIGHT, MAX_BAG_WEIGHT)))
             }
             return
         }

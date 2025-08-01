@@ -1,4 +1,4 @@
-package com.eranio.efficientjanitor.ui
+package com.eranio.efficientjanitor.ui.result
 
 import android.os.Bundle
 import android.view.LayoutInflater
