@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.eranio.efficientjanitor.R
 import com.eranio.efficientjanitor.databinding.BagItemBinding
-import com.eranio.efficientjanitor.formatKg
+import com.eranio.efficientjanitor.util.formatKg
 
 class BagRecyclerAdapter(
     private val onDeleteClicked: (Double) -> Unit

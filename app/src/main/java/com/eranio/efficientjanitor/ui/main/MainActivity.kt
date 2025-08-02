@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eranio.efficientjanitor.R
 import com.eranio.efficientjanitor.databinding.ActivityMainBinding
-import com.eranio.efficientjanitor.hideKeyboard
+import com.eranio.efficientjanitor.util.hideKeyboard
 import com.eranio.efficientjanitor.ui.result.ResultFragment
 import com.eranio.efficientjanitor.viewmodel.JanitorViewModel
 import com.eranio.efficientjanitor.viewmodel.UiEvent
@@ -38,8 +39,8 @@ class MainActivity : AppCompatActivity() {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
         } else {
             window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
+                FLAG_FULLSCREEN,
+                FLAG_FULLSCREEN
             )
         }
 

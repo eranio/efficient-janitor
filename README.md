@@ -31,7 +31,7 @@ EfficientJanitor is a simple Android application that helps calculate the minimu
 - **ViewBinding**
 - **Manual FragmentManager-based navigation** (not Navigation Component)
 - **ConstraintLayout**
-- **Unit tests** (planned / partial)
+- **Unit tests**
 
 ## Algorithm
 

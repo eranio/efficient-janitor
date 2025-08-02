@@ -1,4 +1,4 @@
-package com.eranio.efficientjanitor
+package com.eranio.efficientjanitor.util
 
 import android.content.Context
 import android.view.View
