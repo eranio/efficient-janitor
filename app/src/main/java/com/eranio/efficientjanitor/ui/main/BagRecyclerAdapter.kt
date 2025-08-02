@@ -23,12 +23,14 @@ class BagRecyclerAdapter(
         fun bind(bag: BagEntity) {
             // make sure it's visible again in case it was hidden
             binding.root.visibility = View.VISIBLE
+            binding.deleteButton.isEnabled = true
 
             // show weight
             binding.bagWeightTextView.text = bag.weight.formatKg()
 
             // delete animation + callback
             binding.deleteButton.setOnClickListener {
+                binding.deleteButton.isEnabled = false
                 val animation = AnimationUtils.loadAnimation(binding.root.context, R.anim.item_slide_out)
                 animation.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(animation: Animation?) {}

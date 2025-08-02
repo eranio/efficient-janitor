@@ -7,7 +7,7 @@
     <string name="efficient_janitor_title">Efficient Janitor</string>
     <string name="delete">Delete</string>
     <string name="delete_bag">Delete bag</string>
-    <string name="addRandom">Add 10 Random</string>
+    <string name="addRandom">Add 10 Random (use for DEMO)</string>
     <string name="total_trips_summary">Total Trips: %d</string>
     <string name="total_weight_summary">Total Weight: %.2f Kg</string>
     <string name="invalid_weight_range">Invalid weight (%.2f - %.2f Kg)</string>
