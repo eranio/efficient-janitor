@@ -14,3 +14,4 @@ gi*.iml
 .cxx
 local.properties
 .idea/deploymentTargetSelector.xml
+/.idea
