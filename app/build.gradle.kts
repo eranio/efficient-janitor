@@ -60,6 +60,12 @@ dependencies {
 
     testImplementation(kotlin("test"))
 
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
+    testImplementation(libs.mockk.v1139)
+
+
     // Room
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
@@ -68,4 +74,11 @@ dependencies {
     // Hilt
     implementation("com.google.dagger:hilt-android:2.51")
     kapt("com.google.dagger:hilt-compiler:2.51")
+}
+
+tasks.withType<Test> {
+    jvmArgs(
+        "-XX:+EnableDynamicAgentLoading", // explicitly allow agent loading
+        "-Dnet.bytebuddy.experimental=true" // required for Java 21+
+    )
 }
