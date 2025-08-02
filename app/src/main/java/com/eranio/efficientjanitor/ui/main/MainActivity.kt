@@ -3,11 +3,10 @@ package com.eranio.efficientjanitor.ui.main
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
-import android.view.WindowManager
-import android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -38,10 +37,7 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
         } else {
-            window.setFlags(
-                FLAG_FULLSCREEN,
-                FLAG_FULLSCREEN
-            )
+            WindowCompat.setDecorFitsSystemWindows(window, false)
         }
 
         val adapter = BagRecyclerAdapter { bag ->
