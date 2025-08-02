@@ -16,8 +16,8 @@ interface BagDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBag(bag: BagEntity)
 
-    @Delete
-    suspend fun deleteBag(bag: BagEntity)
+    @Query("DELETE FROM bags WHERE id = :id")
+    suspend fun deleteBag(id: Long)
 
     @Query("DELETE FROM bags")
     suspend fun clearAllBags()

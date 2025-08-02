@@ -11,16 +11,15 @@ class RoomBagRepository @Inject constructor(
     private val dao: BagDao
 ) : BagRepository {
 
-    override val bagsFlow: Flow<List<Double>> =
-        dao.getAllBags().map { list: List<BagEntity> -> list.map { it.weight } }
-
+    override val bagsFlow: Flow<List<BagEntity>> =
+        dao.getAllBags()
 
     override suspend fun addBag(weight: Double) {
         dao.insertBag(BagEntity(weight = weight))
     }
 
-    override suspend fun deleteBag(weight: Double) {
-        dao.deleteBag(BagEntity(weight = weight))
+    override suspend fun deleteBag(id: Long) {
+        dao.deleteBag(id)
     }
 
     override suspend fun clearBags() {

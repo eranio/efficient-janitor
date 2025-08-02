@@ -9,32 +9,36 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.eranio.efficientjanitor.R
+import com.eranio.efficientjanitor.data.local.BagEntity
 import com.eranio.efficientjanitor.databinding.BagItemBinding
 import com.eranio.efficientjanitor.util.formatKg
 
 class BagRecyclerAdapter(
-    private val onDeleteClicked: (Double) -> Unit
-) : ListAdapter<Double, BagRecyclerAdapter.BagViewHolder>(BagDiffCallback()) {
+    private val onDeleteClicked: (BagEntity) -> Unit
+) : ListAdapter<BagEntity, BagRecyclerAdapter.BagViewHolder>(BagDiffCallback()) {
 
-    inner class BagViewHolder(val binding: BagItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(weight: Double) {
+    inner class BagViewHolder(private val binding: BagItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(bag: BagEntity) {
+            // make sure it's visible again in case it was hidden
             binding.root.visibility = View.VISIBLE
-            binding.bagWeightTextView.text = weight.formatKg()
+
+            // show weight
+            binding.bagWeightTextView.text = bag.weight.formatKg()
+
+            // delete animation + callback
             binding.deleteButton.setOnClickListener {
                 val animation = AnimationUtils.loadAnimation(binding.root.context, R.anim.item_slide_out)
-
-                // animate deletion
                 animation.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(animation: Animation?) {}
                     override fun onAnimationRepeat(animation: Animation?) {}
-
                     override fun onAnimationEnd(animation: Animation?) {
                         binding.root.visibility = View.INVISIBLE
-                        onDeleteClicked(weight)
+                        onDeleteClicked(bag)
                     }
                 })
                 binding.root.startAnimation(animation)
-
             }
         }
     }
@@ -47,14 +51,16 @@ class BagRecyclerAdapter(
     override fun onBindViewHolder(holder: BagViewHolder, position: Int) {
         holder.bind(getItem(position))
 
-        // animate entry
-        val context = holder.itemView.context
-        val animation = AnimationUtils.loadAnimation(context, R.anim.item_slide_in)
+        // entry animation
+        val animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.item_slide_in)
         holder.itemView.startAnimation(animation)
     }
-}
 
-class BagDiffCallback : DiffUtil.ItemCallback<Double>() {
-    override fun areItemsTheSame(oldItem: Double, newItem: Double): Boolean = oldItem == newItem
-    override fun areContentsTheSame(oldItem: Double, newItem: Double): Boolean = oldItem == newItem
+    private class BagDiffCallback : DiffUtil.ItemCallback<BagEntity>() {
+        override fun areItemsTheSame(old: BagEntity, new: BagEntity): Boolean =
+            old.id == new.id
+
+        override fun areContentsTheSame(old: BagEntity, new: BagEntity): Boolean =
+            old == new
+    }
 }

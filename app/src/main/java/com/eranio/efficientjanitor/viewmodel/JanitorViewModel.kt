@@ -3,6 +3,7 @@ package com.eranio.efficientjanitor.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.eranio.efficientjanitor.R
+import com.eranio.efficientjanitor.data.local.BagEntity
 import com.eranio.efficientjanitor.domain.BagRepository
 import com.eranio.efficientjanitor.domain.TripsCalculator
 import com.eranio.efficientjanitor.util.Constants.MAX_BAG_WEIGHT
@@ -81,17 +82,17 @@ class JanitorViewModel @Inject constructor(
         }
     }
 
-    fun onRemoveBag(weight: Double) {
+    fun onRemoveBag(bag: BagEntity) {
         val current = _uiState.value
-        _uiState.value = current.copy(bags = current.bags - weight)
+        _uiState.value = current.copy(bags = current.bags - bag)
         viewModelScope.launch {
-            bagRepository.deleteBag(weight)
+            bagRepository.deleteBag(bag.id)
         }
     }
 
     fun onCalculateClicked() {
-        val currentBags = _uiState.value.bags
-        val trips = tripsCalculator.calculateTrips(currentBags)
+        val weights = _uiState.value.bags.map { it.weight }
+        val trips = tripsCalculator.calculateTrips(weights)
         _uiState.value = _uiState.value.copy(trips = trips)
     }
 }
