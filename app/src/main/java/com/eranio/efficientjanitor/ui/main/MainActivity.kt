@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         binding.addButton.setOnClickListener {
             val input = binding.weightInputEditText.text.toString()
             viewModel.onAddBagClicked(input)
-            binding.weightInputEditText.text.clear()
+            binding.weightInputEditText.text?.clear()
             binding.weightInputEditText.hideKeyboard()
         }
 

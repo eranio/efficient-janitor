@@ -12,5 +12,6 @@
     <string name="invalid_weight_range">Invalid weight (%.2f - %.2f Kg)</string>
     <string name="cant_be_empty">Weight cannot be empty</string>
     <string name="list_was_cleared">List was cleared</string>
+    <string name="result_title">Calculation Result</string>
 
 </resources>
