@@ -15,7 +15,7 @@ EfficientJanitor is a simple Android application that helps calculate the minimu
 
 <p align="center">
   <img 
-    src="docs/bags_screen_dark.png" 
+    src="docs/bag_screen_dark.png" 
     alt="Bags Screen" 
     width="30%" 
   />
