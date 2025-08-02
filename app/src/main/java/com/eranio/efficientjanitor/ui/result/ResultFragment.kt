@@ -44,6 +44,7 @@ class ResultFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
                     binding.tripSummaryTextView.text = getString(R.string.total_trips_summary, state.trips.size)
+                    binding.weightSummaryTextView.text = getString(R.string.total_weight_summary, state.trips.flatten().sum())
                     adapter.submitList(state.trips)
                 }
             }
