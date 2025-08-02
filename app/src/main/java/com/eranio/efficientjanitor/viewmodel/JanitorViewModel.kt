@@ -6,6 +6,7 @@ import com.eranio.efficientjanitor.R
 import com.eranio.efficientjanitor.data.local.BagEntity
 import com.eranio.efficientjanitor.domain.BagRepository
 import com.eranio.efficientjanitor.domain.TripsCalculator
+import com.eranio.efficientjanitor.ui.result.Trip
 import com.eranio.efficientjanitor.util.Constants.MAX_BAG_WEIGHT
 import com.eranio.efficientjanitor.util.Constants.MIN_BAG_WEIGHT
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,6 +14,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.roundToInt
@@ -91,8 +93,9 @@ class JanitorViewModel @Inject constructor(
     }
 
     fun onCalculateClicked() {
-        val weights = _uiState.value.bags.map { it.weight }
-        val trips = tripsCalculator.calculateTrips(weights)
-        _uiState.value = _uiState.value.copy(trips = trips)
+        val weights = uiState.value.bags.map { it.weight }
+        val rawTrips = tripsCalculator.calculateTrips(weights)
+        val trips = rawTrips.mapIndexed { index, list -> Trip(index.toLong(), list) }
+        _uiState.update { it.copy(trips = trips) }
     }
 }

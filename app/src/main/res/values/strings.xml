@@ -14,5 +14,6 @@
     <string name="cant_be_empty">Weight cannot be empty</string>
     <string name="list_was_cleared">List was cleared</string>
     <string name="result_title">Calculation Result</string>
+    <string name="trip_number">Trip %d</string>
 
 </resources>
