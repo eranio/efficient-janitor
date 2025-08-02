@@ -15,8 +15,6 @@ import com.eranio.efficientjanitor.viewmodel.JanitorViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
-
 @AndroidEntryPoint
 class ResultFragment : Fragment() {
 
