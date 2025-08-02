@@ -19,6 +19,7 @@ EfficientJanitor is a simple Android application that helps calculate the minimu
 - ✅ Constants for min/max bag weight
 - ✅ Responsive UI with enabled/disabled buttons based on state
 - ✅ Organized package structure
+- ✅ Dark/Light mode support
 
 ## Technology Stack
 

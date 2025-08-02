@@ -1,5 +1,6 @@
 package com.eranio.efficientjanitor.ui.result
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.eranio.efficientjanitor.R
 import com.eranio.efficientjanitor.databinding.TripItemBinding
+import com.google.android.material.color.MaterialColors
 
 class TripsAdapter : ListAdapter<List<Double>, TripsAdapter.TripViewHolder>(DiffCallback) {
 
@@ -43,6 +45,9 @@ class TripsAdapter : ListAdapter<List<Double>, TripsAdapter.TripViewHolder>(Diff
                         rightMargin = iconMargin
                     }
                 }
+                val tint = MaterialColors.getColor(itemView, com.google.android.material.R.attr.colorOnSurface)
+                iv.imageTintList = ColorStateList.valueOf(tint)
+
                 container.addView(iv)
             }
         }
