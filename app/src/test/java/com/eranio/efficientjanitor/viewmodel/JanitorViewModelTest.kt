@@ -2,6 +2,7 @@ package com.eranio.efficientjanitor.viewmodel
 
 import app.cash.turbine.test
 import com.eranio.efficientjanitor.R
+import com.eranio.efficientjanitor.data.local.BagEntity
 import com.eranio.efficientjanitor.domain.BagRepository
 import com.eranio.efficientjanitor.domain.TripsCalculator
 import com.eranio.efficientjanitor.util.Constants.MAX_BAG_WEIGHT
@@ -20,7 +21,7 @@ import kotlin.test.assertEquals
 class JanitorViewModelTest {
 
     private val testDispatcher = StandardTestDispatcher()
-    private val testBagsFlow = MutableStateFlow<List<Double>>(emptyList())
+    private val testBagsFlow = MutableStateFlow<List<BagEntity>>(emptyList())
 
     private lateinit var bagRepository: BagRepository
     private lateinit var tripsCalculator: TripsCalculator
@@ -82,33 +83,45 @@ class JanitorViewModelTest {
 
     @Test
     fun `onRemoveBag calls deleteBag on repository`() = runTest {
-        viewModel.onRemoveBag(1.0)
-        testDispatcher.scheduler.advanceUntilIdle()
-        coVerify { bagRepository.deleteBag(1.0) }
+        val weight = 1.0
+        val expectedEntity = BagEntity(weight = weight)
+
+        viewModel.onRemoveBag(expectedEntity)
+        advanceUntilIdle()
+
+        coVerify { bagRepository.deleteBag(expectedEntity.id) }
     }
 
     @Test
     fun `observeBags updates UI state when repository emits`() = runTest {
-        val sampleBags = listOf(1.0, 2.0)
-        testBagsFlow.value = sampleBags
-        testDispatcher.scheduler.advanceUntilIdle()
+        val sampleEntities = listOf(
+            BagEntity(weight = 1.0),
+            BagEntity(weight = 2.0)
+        )
+        val expectedWeights = sampleEntities
+
+        testBagsFlow.value = sampleEntities
+        advanceUntilIdle()
 
         viewModel.uiState.test {
             val state = awaitItem()
-            assertEquals(sampleBags, state.bags)
+            assertEquals<List<Any>>(expectedWeights, state.bags)
         }
     }
 
     @Test
     fun `onCalculateClicked updates trips in UI state`() = runTest {
-        val bags = listOf(1.0, 2.0)
-        val trips = listOf(listOf(1.0, 2.0))
-        every { tripsCalculator.calculateTrips(bags) } returns trips
+        val sampleEntities = listOf(
+            BagEntity(weight = 1.0),
+            BagEntity(weight = 2.0)
+        )
+        val weights = sampleEntities.map { it.weight.toDouble() }
+        val trips: List<List<Double>> = listOf(listOf(1.0, 2.0))
+
+        every { tripsCalculator.calculateTrips(weights) } returns trips
 
         // Emit new list to repository flow
-        testBagsFlow.value = bags
-
-        // Let the ViewModel update UI state before calculate is called
+        testBagsFlow.value = sampleEntities
         advanceUntilIdle()
 
         // Now run the calculation
@@ -117,7 +130,7 @@ class JanitorViewModelTest {
 
         viewModel.uiState.test {
             val state = awaitItem()
-            assertEquals(trips, state.trips)
+            assertEquals<List<Any>>(trips, state.trips.map { it.weights })
         }
     }
 }
