@@ -20,6 +20,7 @@ mockkVersion = "1.13.9"
 roomCommonJvm = "2.7.2"
 roomRuntimeAndroid = "2.7.2"
 turbine = "1.0.0"
+room = "2.6.1"
 
 [libraries]
 androidx-lifecycle-viewmodel-ktx-v280 = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
@@ -51,8 +52,12 @@ androidx-room-runtime-android = { group = "androidx.room", name = "room-runtime-
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 mockk-v1139 = { module = "io.mockk:mockk", version.ref = "mockkVersion" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
 
