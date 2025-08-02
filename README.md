@@ -2,6 +2,14 @@
 
 EfficientJanitor is a simple Android application that helps calculate the minimum number of trips required to carry garbage bags, based on their weights. The user inputs the weights of garbage bags, and the app efficiently groups them into trips, each with a weight limit of up to 3 kg.
 
+## Screenshots
+
+### Bags Screen
+![bags Screen](docs/bag_screen_light.png)
+
+### Result Screen
+![Result Screen](docs/result_screen_light.png)
+
 ## Features
 
 - ✅ Add individual bags by weight (manual input)
