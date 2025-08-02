@@ -82,6 +82,8 @@ class JanitorViewModel @Inject constructor(
     }
 
     fun onRemoveBag(weight: Double) {
+        val current = _uiState.value ?: return
+        _uiState.value = current.copy(bags = current.bags - weight)
         viewModelScope.launch {
             bagRepository.deleteBag(weight)
         }
