@@ -72,8 +72,8 @@ dependencies {
     kapt("androidx.room:room-compiler:2.6.1")
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.51")
-    kapt("com.google.dagger:hilt-compiler:2.51")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 }
 
 tasks.withType<Test> {
